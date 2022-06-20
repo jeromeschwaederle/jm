@@ -1,0 +1,32 @@
+/* 
+Main colors: 
+TINTS: 
+
+SHADES:
+
+
+SPACING SYSTEM:
+2 4 8 12 16 24 32 48 64 80 96 128
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  background-color: red;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.wrapper {
+  height: 100vh;
+  width: auto;
+  background-color: lightgreen;
+  padding: 1.6rem;
+}
