@@ -1,5 +1,6 @@
 .App {
   height: 100%;
   width: auto;
-  background-color: lightcoral;
+  background-color: #e6f2ef;
+  border-radius: 0.8rem;
 }

@@ -1,0 +1,36 @@
+.container {
+  height: 100%;
+  width: 85%;
+  margin: auto;
+  font-weight: 500;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 4.4rem;
+  text-align: center;
+  margin-bottom: 13vh;
+}
+
+.presentation {
+  font-size: 2.4rem;
+  font-weight: 600;
+
+  margin-bottom: 9vh;
+}
+
+.btnPrimary {
+  background-color: #010d09;
+  color: #e6f2ef;
+  font-weight: 700;
+}
+
+.btnSecondary {
+  background-color: #e6f2ef;
+  color: #010d09;
+  font-weight: 600;
+  margin-bottom: 2vh;
+}
