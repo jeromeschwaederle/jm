@@ -1,11 +1,12 @@
 import styles from "./App.module.css";
 import Acceuil from "./components/Acceuil/Acceuil";
-import CommentCaMarche from "./components/CommentCaMarche/CommentCaMarche";
+import UrneConfig from "./components/UrneConfig/UrneConfig";
 
 export default function App() {
   return (
     <div className={styles.App}>
-      <Acceuil />
+      {/* <Acceuil /> */}
+      <UrneConfig />
     </div>
   );
 }

@@ -1,9 +1,11 @@
 .btn {
+  display: inline-block;
+  width: fit-content;
+
   padding: 1.2rem 1.6rem;
   font-size: 2.4rem;
   border: 0.3rem solid #02261b;
   cursor: pointer;
   text-transform: uppercase;
   font-family: inherit;
-  /* font-weight: 600; */
 }

@@ -1,12 +1,13 @@
 .container {
   height: 100%;
-  width: 85%;
+  padding: 2.4rem;
+
   margin: auto;
   font-weight: 500;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
+  gap: 3.2rem;
 }
 
 .title {
@@ -16,21 +17,26 @@
 }
 
 .presentation {
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 600;
+  text-align: center;
 
-  margin-bottom: 9vh;
+  grid-row: 2;
 }
 
 .btnPrimary {
   background-color: #010d09;
   color: #e6f2ef;
   font-weight: 700;
+
+  grid-row: 3;
+  justify-self: center;
 }
 
 .btnSecondary {
   background-color: #e6f2ef;
   color: #010d09;
   font-weight: 600;
-  margin-bottom: 2vh;
+  grid-row: 5/-1;
+  justify-self: center;
 }

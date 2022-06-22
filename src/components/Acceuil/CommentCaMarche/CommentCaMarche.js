@@ -1,7 +1,7 @@
 import styles from "./CommentCaMarche.module.css";
-import { TEXT } from "../../UI/textConstants";
-import IconClose from "../../UI/Icons/IconClose";
-import Accordeon from "../../UI/Accordeon/Accordeon";
+import { TEXT } from "../../../UI/textConstants";
+import IconClose from "../../../UI/Icons/IconClose";
+import Accordeon from "../../../UI/Accordeon/Accordeon";
 
 export default function CommentCaMarche({ setShowExplanation }) {
   const clickHandler = () => setShowExplanation(false);

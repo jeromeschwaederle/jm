@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { current } from "@reduxjs/toolkit";
+// import { current } from "@reduxjs/toolkit";
 
 const initialState = {
   hasStarted: false,
@@ -10,15 +10,14 @@ const initialState = {
   results: undefined,
   demandAccesResults: false,
   accessResults: false,
-  test: "c'est un test !!!",
 };
 
 export const voteSlice = createSlice({
   name: "vote",
   initialState,
   reducers: {
-    test(state) {
-      console.log(current(state));
+    startVotingProcess(state) {
+      state.hasStarted = true;
     },
   },
 });
