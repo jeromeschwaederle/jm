@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import styles from "./Acceuil.module.css";
 import Button from "../../UI/Button/Button";
@@ -10,8 +10,6 @@ import { voteActions } from "../../store/voteSlice";
 export default function Acceuil() {
   const dispatch = useDispatch();
   const btnPrimaryHandler = () => dispatch(voteActions.startVotingProcess());
-  const hasStarted = useSelector(state => state.vote.hasStarted);
-  console.log(hasStarted);
 
   const [showExplanation, setShowExplanation] = useState(false);
   const btnSecondaryHandler = () => {

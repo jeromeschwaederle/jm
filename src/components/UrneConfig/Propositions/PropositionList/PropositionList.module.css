@@ -1,0 +1,84 @@
+.container {
+  margin-bottom: 3.2rem;
+}
+
+.list_title {
+  font-size: 3rem;
+  margin-bottom: 1.2rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.listItem {
+  font-size: 2rem;
+  padding: 0.4rem 0.8rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.listItem__saved,
+.listItem__saved .input {
+  background-color: #9cccbd;
+}
+
+.listItem__proposition,
+.input__new {
+  background-color: #e6f2ef;
+}
+
+.listItem__proposition {
+  border: 0.2rem solid #cee5de;
+}
+
+.input,
+.input__new {
+  font: inherit;
+  font-size: inherit;
+  /* width: 80%; */
+  border: none;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.input {
+  padding-left: 0.8rem;
+  cursor: default;
+}
+
+.input:focus,
+.input:active {
+  outline: none;
+}
+
+.input__new,
+.input__new:active,
+.input__new:focus {
+  padding: 0.8rem;
+  outline: none;
+}
+
+.btn {
+  height: 3.2rem;
+  width: 3.2rem;
+  padding: 0;
+  border-color: #9cccbd;
+}
+
+.btn:disabled {
+  border: none;
+  color: #cee5de;
+  cursor: not-allowed;
+}
+
+.btn__remove {
+  background-color: #9cccbd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

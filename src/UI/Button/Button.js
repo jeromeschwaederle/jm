@@ -1,12 +1,14 @@
 import styles from "./Button.module.css";
 
-export default function Button({ className, onClick, children, disabled }) {
+export default function Button(props) {
+  const { className, onClick, children, disabled, primary, secondary } = props;
+
+  const appliedStyles = `${styles.btn} ${className ? className : ""} ${
+    secondary ? styles.btn__secondary : ""
+  } ${primary ? styles.btn__primary : ""}`;
+
   return (
-    <button
-      className={`${styles.btn} ${className ? className : ""}`}
-      onClick={onClick}
-      disabled={disabled}
-    >
+    <button className={appliedStyles} onClick={onClick} disabled={disabled}>
       {children}
     </button>
   );

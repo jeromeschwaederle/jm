@@ -28,6 +28,7 @@
   background-color: #010d09;
   color: #e6f2ef;
   font-weight: 700;
+  width: 100%;
 
   grid-row: 3;
   justify-self: center;
@@ -37,6 +38,8 @@
   background-color: #e6f2ef;
   color: #010d09;
   font-weight: 600;
+  width: 100%;
+
   grid-row: 5/-1;
   justify-self: center;
 }

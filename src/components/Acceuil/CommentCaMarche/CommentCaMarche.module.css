@@ -9,10 +9,6 @@
   color: #e6f2ef;
 
   overflow: scroll;
-
-  display: flex;
-  flex-direction: column;
-  gap: 3.2rem;
 }
 
 .iconClose {
@@ -23,4 +19,5 @@
   max-width: 3.2rem;
 
   align-self: center;
+  margin: 0 auto 3.2rem auto;
 }

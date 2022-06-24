@@ -1,0 +1,15 @@
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.iconClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-height: 4.4rem;
+  min-width: 4.4rem;
+  max-height: 4.4rem;
+  max-width: 4.4rem;
+}

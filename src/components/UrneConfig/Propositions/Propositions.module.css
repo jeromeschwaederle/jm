@@ -1,0 +1,51 @@
+.container {
+  /* background-color: lightblue; */
+  font-size: 2.4rem;
+  padding-top: 6.4rem;
+  height: 100%;
+}
+
+.btn {
+  width: 100%;
+}
+
+.icon {
+  max-height: 3.2rem;
+  min-height: 3.2rem;
+  max-width: 3.2rem;
+  min-width: 3.2rem;
+}
+
+.formTitle {
+  text-align: center;
+  margin-bottom: 3.2rem;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3.2rem;
+}
+
+.label {
+  text-transform: uppercase;
+}
+
+.input {
+  height: 4.8rem;
+  font: inherit;
+  font-weight: 600;
+  background-color: #e6f2ef;
+  padding: 1.2rem;
+  border: 0.3rem solid #010d09;
+}
+
+.invalid .input {
+  background-color: rgb(255, 111, 111);
+}
+
+.errorMessage {
+  color: rgb(202, 0, 0);
+  font-weight: 700;
+  font-size: 1.8rem;
+}

@@ -25,4 +25,21 @@ export const TEXT = {
       text: "Les résultats sont établis selon la méthode du jugement majoritaire. Ils vous permettent d'avoir une vision fidèle de l'opinion du groupe de personnes que vous avez consulté et d'obtenir un résultat conforme aux opinions exprimées.",
     },
   ],
+  configurationUrne: {
+    titre: "nouvelle urne",
+    input_1: {
+      label: "titre",
+      placeholder: "S'exprimer à propos de...",
+    },
+    input_2: {
+      label: "Propositions",
+      placeholder: "Nouvelle propostition",
+    },
+  },
+  Overlay: {
+    textLooseData:
+      "Toutes les données saisies vont être perdues. Voulez-vous continuer ?",
+    yes: "oui",
+    no: "non",
+  },
 };

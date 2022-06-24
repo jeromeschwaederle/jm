@@ -1,11 +1,22 @@
 .btn {
   display: inline-block;
-  width: fit-content;
 
   padding: 1.2rem 1.6rem;
   font-size: 2.4rem;
-  border: 0.3rem solid #02261b;
+  border: 0.3rem solid #010d09;
   cursor: pointer;
   text-transform: uppercase;
   font-family: inherit;
+}
+
+.btn__primary {
+  background-color: #010d09;
+  color: #e6f2ef;
+  font-weight: 700;
+}
+
+.btn__secondary {
+  background-color: #e6f2ef;
+  color: #010d09;
+  font-weight: 600;
 }

@@ -19,6 +19,9 @@ export const voteSlice = createSlice({
     startVotingProcess(state) {
       state.hasStarted = true;
     },
+    resetVotingProcess() {
+      return initialState;
+    },
   },
 });
 
