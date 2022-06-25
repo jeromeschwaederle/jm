@@ -1,62 +1,199 @@
+import { useState, useRef } from "react";
+
 import styles from "./Propositions.module.css";
-import { TEXT } from "../../../UI/textConstants";
-import Button from "../../../UI/Button/Button";
-import useInput from "../../../hooks/use-input";
+import IconClose from "../../../UI/Icons/IconClose";
 import IconCheck from "../../../UI/Icons/IconCheck";
-import PropositionList from "./PropositionList/PropositionList";
+import Button from "../../../UI/Button/Button";
 
 export default function Propositions() {
-  const {
-    value: titleValue,
-    isValid: titleIsValid,
-    hasError: titleHasError,
-    valueChangeHandler: titleChangeHandler,
-    inputBlurHandler: titleBlurHandler,
-    reset: resetTitle,
-  } = useInput();
+  // ########################################
+  // Title
+  // ########################################
+  const [title, setTitle] = useState("");
+  const [titleSaved, setTitleSaved] = useState(false);
+  const titleRef = useRef();
 
-  const submitHandler = e => {
-    e.preventDefault();
-    console.log("submitted !!!!");
-    console.log("titleValue:", titleValue);
-    resetTitle();
+  let newTitleIsValid = false;
+  if (title.trim() !== "") newTitleIsValid = true;
+
+  const newTitleHandler = e => setTitle(e.target.value.toLowerCase());
+
+  const saveTitle = () => {
+    if (newTitleIsValid) setTitleSaved(true);
   };
 
-  const titleInputClasses = titleHasError
-    ? `${styles.formControl} ${styles.invalid}`
-    : `${styles.formControl}`;
+  const titleStyles = titleSaved
+    ? `${styles.listItem} ${styles.listItem__saved}`
+    : `${styles.listItem} ${styles.listItem__proposition}`;
+
+  const changeTitleHandler = () => {
+    setTitle("");
+    setTitleSaved(false);
+    titleRef.current.focus();
+  };
+
+  const titleinputStyles = titleSaved ? styles.input : styles.input__new;
+
+  // ########################################
+  // LIST
+  // ########################################
+
+  const [list, setList] = useState([]);
+
+  const [newProposition, setNewProposition] = useState("");
+  const newPropositionHandler = e =>
+    setNewProposition(e.target.value.toLowerCase());
+
+  let newPropositionIsValid = false;
+  if (
+    newProposition.trim() !== "" &&
+    !list.find(element => element.value === newProposition.trim())
+  ) {
+    newPropositionIsValid = true;
+  }
+
+  const addHandler = () => {
+    if (newPropositionIsValid) {
+      setList(oldState => [
+        ...oldState,
+        { id: oldState.length + 1, value: newProposition.trim().toLowerCase() },
+      ]);
+      setNewProposition("");
+    }
+  };
+
+  const removeHandler = e => {
+    const itemClickedId = Number(e.target.closest(`.${styles.listItem}`).id);
+    const updatedList = list.filter(item => item.id !== itemClickedId);
+    setList(() => updatedList);
+  };
+
+  // ########################################
+  // SUBMIT LOGIC
+  // ########################################
+
+  const listIsValid = list.length > 0;
+  const formIsValid = listIsValid && titleSaved;
+
+  const [formIsChecked, setFormIsChecked] = useState(false);
+
+  const submitHandler = () => {
+    if (!formIsChecked) setFormIsChecked(true);
+    if (formIsChecked) console.log("LE VOTE COMMENCE");
+  };
+
+  //TO DO modifier la logique de l'id des propositions
+
+  const modifyInputHandler = () => setFormIsChecked(false);
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.formTitle}>Configuration</h2>
+      <h1 className={styles.pageTitle}>
+        {formIsChecked ? "Tout est OK ?" : "Configuration"}
+      </h1>
+      <section className={styles.sectionTitle}>
+        <h2 className={styles.sectionTitle}>Titre</h2>
+        <ul>
+          <li className={titleStyles}>
+            <input
+              ref={titleRef}
+              className={titleinputStyles}
+              type={"text"}
+              placeholder="titre"
+              onChange={newTitleHandler}
+              value={title}
+              autoFocus={true}
+            />
+            {!formIsChecked && !titleSaved && (
+              <Button
+                disabled={!newTitleIsValid}
+                secondary
+                className={styles.btn}
+                onClick={saveTitle}
+              >
+                <IconCheck />
+              </Button>
+            )}
+            {!formIsChecked && titleSaved && (
+              <Button
+                onClick={changeTitleHandler}
+                className={`${styles.btn} ${styles.btn__remove}`}
+              >
+                <IconClose className={styles.iconClose} />
+              </Button>
+            )}
+          </li>
+        </ul>
+      </section>
+      <section className={styles.sectionList}>
+        <h2 className={styles.sectionTitle}>Propositions</h2>
+        <ul className={styles.list}>
+          {list.map(item => (
+            <li
+              className={`${styles.listItem} ${styles.listItem__saved}`}
+              key={item.id}
+              id={item.id}
+            >
+              <input
+                className={styles.input}
+                type={"text"}
+                id={item.id}
+                value={item.value}
+                readOnly
+              />
 
-      <form onSubmit={submitHandler}>
-        <div className={titleInputClasses}>
-          <label className={styles.label} htmlFor="title">
-            Titre
-          </label>
-          <input
-            className={styles.input}
-            type="text"
-            id="title"
-            value={titleValue}
-            onChange={titleChangeHandler}
-            onBlur={titleBlurHandler}
-            autoFocus={true}
-          />
-          {titleHasError && (
-            <p className={styles.errorMessage}>You must enter a title</p>
+              {!formIsChecked && (
+                <Button
+                  onClick={removeHandler}
+                  className={`${styles.btn} ${styles.btn__remove}`}
+                >
+                  <IconClose className={styles.iconClose} />
+                </Button>
+              )}
+            </li>
+          ))}
+          {!formIsChecked && (
+            <li
+              className={`${styles.listItem} ${styles.listItem__proposition}`}
+            >
+              <input
+                className={styles.input__new}
+                type={"text"}
+                placeholder="proposition"
+                onChange={newPropositionHandler}
+                value={newProposition}
+              />
+              <Button
+                disabled={!newPropositionIsValid}
+                secondary
+                className={styles.btn}
+                onClick={addHandler}
+              >
+                <IconCheck />
+              </Button>
+            </li>
           )}
-        </div>
-
-        <PropositionList />
-
-        <div className="form-actions">
-          <Button className={styles.btn} primary>
-            <IconCheck className={styles.icon} />
+        </ul>
+      </section>
+      <div className={styles.formControl}>
+        <Button
+          className={styles.btnSubmit}
+          onClick={submitHandler}
+          primary
+          disabled={!formIsValid}
+        >
+          {formIsChecked ? "Confirmer" : <IconCheck />}
+        </Button>
+        {formIsChecked && (
+          <Button
+            onClick={modifyInputHandler}
+            secondary
+            className={styles.btnSubmit}
+          >
+            Modifier
           </Button>
-        </div>
-      </form>
+        )}
+      </div>
     </div>
   );
 }

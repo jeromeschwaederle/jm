@@ -15,6 +15,10 @@
   font-weight: 700;
 }
 
+.btn__primary:focus {
+  /* background-color: red; */
+}
+
 .btn__secondary {
   background-color: #e6f2ef;
   color: #010d09;

@@ -23,7 +23,9 @@ export default function UrneConfig() {
             text={TEXT.Overlay.textLooseData}
           />
         )}
-        <IconClose onClick={closeHandler} className={styles.iconClose} />
+        <button onClick={closeHandler} className={styles.iconClose}>
+          <IconClose />
+        </button>
         <Propositions />
       </div>
     );

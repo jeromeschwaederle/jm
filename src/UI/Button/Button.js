@@ -8,7 +8,12 @@ export default function Button(props) {
   } ${primary ? styles.btn__primary : ""}`;
 
   return (
-    <button className={appliedStyles} onClick={onClick} disabled={disabled}>
+    <button
+      className={appliedStyles}
+      onClick={onClick}
+      disabled={disabled}
+      type={"button"}
+    >
       {children}
     </button>
   );

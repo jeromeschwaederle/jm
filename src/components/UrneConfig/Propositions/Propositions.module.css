@@ -1,51 +1,124 @@
 .container {
-  /* background-color: lightblue; */
-  font-size: 2.4rem;
-  padding-top: 6.4rem;
-  height: 100%;
+  /* margin-bottom: 3.2rem; */
+}
+
+.pageTitle {
+  font-size: 3.6rem;
+  margin-bottom: 2.4rem;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  margin-bottom: 1.2rem;
+}
+
+.sectionList {
+  margin-bottom: 3.2rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.listItem {
+  font-size: 2rem;
+  padding: 0.4rem 0.8rem;
+
+  display: flex;
+  align-items: center;
+}
+
+.listItem__saved,
+.listItem__saved .input {
+  background-color: #9cccbd;
+  height: 4rem;
+}
+
+.listItem__proposition,
+.input__new {
+  background-color: #e6f2ef;
+}
+
+.listItem__proposition {
+  border: 0.2rem solid #cee5de;
+}
+
+.input,
+.input__new {
+  font: inherit;
+  font-size: inherit;
+  display: block;
+
+  border: none;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  flex-grow: 1;
+}
+
+.input {
+  padding-left: 0.8rem;
+  cursor: default;
+}
+
+.input:focus,
+.input:active {
+  outline: none;
+}
+
+.input__new,
+.input__new:active,
+.input__new:focus {
+  padding: 0.8rem;
+  outline: none;
 }
 
 .btn {
-  width: 100%;
+  height: 3.2rem;
+  width: 3.2rem;
+  padding: 0;
+  border-color: #9cccbd;
 }
 
-.icon {
-  max-height: 3.2rem;
-  min-height: 3.2rem;
-  max-width: 3.2rem;
-  min-width: 3.2rem;
+.btn:disabled {
+  border: none;
+  color: #cee5de;
+  cursor: not-allowed;
 }
 
-.formTitle {
-  text-align: center;
-  margin-bottom: 3.2rem;
+.btn__remove {
+  background-color: #9cccbd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
 }
 
 .formControl {
   display: flex;
   flex-direction: column;
-  margin-bottom: 3.2rem;
+  gap: 1.2rem;
 }
 
-.label {
-  text-transform: uppercase;
+.btnSubmit {
+  display: block;
+  width: 100%;
 }
 
-.input {
-  height: 4.8rem;
-  font: inherit;
-  font-weight: 600;
+.btnSubmit:disabled {
   background-color: #e6f2ef;
-  padding: 1.2rem;
-  border: 0.3rem solid #010d09;
+  border-color: #cee5de;
+  cursor: not-allowed;
 }
 
-.invalid .input {
-  background-color: rgb(255, 111, 111);
+.btnSubmit:disabled svg {
+  color: #cee5de;
 }
 
-.errorMessage {
-  color: rgb(202, 0, 0);
-  font-weight: 700;
-  font-size: 1.8rem;
+.btnSubmit svg {
+  height: 4.8rem;
+  width: 4.8rem;
 }
