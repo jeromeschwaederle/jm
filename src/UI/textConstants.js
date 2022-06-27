@@ -28,14 +28,14 @@ export const TEXT = {
   configurationUrne: {
     propositions: {
       titre: "Tout est OK ?",
-      errorMessage: "Veuillez confirmer le titre.",
+      errorMessage: "Veuillez confirmer l'objet du vote.",
       input_1: {
-        label: "titre",
-        placeholder: "titre",
+        label: "Objet du vote",
+        placeholder: "La destination des vacances",
       },
       input_2: {
         label: "Propositions",
-        placeholder: "propositition",
+        placeholder: "proposition...",
       },
       button: { 1: "confirmer", 2: "modifier" },
     },
@@ -50,6 +50,31 @@ export const TEXT = {
       title: "Votre urne mobile est prête !",
       text: "Les participants peuvent remplir leur bulletin sur cet appareil chacun leur tour.",
       button: "premier bulletin",
+    },
+  },
+  Ballot: {
+    Bulletin: {
+      statement_part_1: "Ayant pris tous les éléments en compte concernant ",
+      statement_part_2: ", je juge en conscience que ces propositions sont :",
+      mentions: [
+        "excellent.e",
+        "très bien",
+        "bien",
+        "assez bien",
+        "passable",
+        "insuffisant.e",
+        "à rejeter",
+        // "très bon(ne)",
+        // "bon(ne)",
+        // "plutôt bon.ne",
+        // "plutôt mauvais.e",
+        // "mauvais.e",
+        // "très mauvais.e",
+        // "à rejeter",
+      ],
+      btn_delete: "Supprimer ce bulletin",
+      btn_confirm: "Mettre dans l'urne",
+      btn_modify: "Modifier",
     },
   },
   Overlay: {

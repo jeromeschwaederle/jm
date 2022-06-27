@@ -11,11 +11,15 @@ export default function App() {
   );
   const ballotHasStarted = useSelector(state => state.vote.ballotHasStarted);
 
+  const showAcceuil = !voteHasStarted && !ballotHasStarted;
+  const showUrneConfig = voteHasStarted && !ballotHasStarted;
+  const showBallot = voteHasStarted && ballotHasStarted;
+
   return (
     <div className={styles.App}>
-      {!voteHasStarted && !ballotHasStarted && <Acceuil />}
-      {voteHasStarted && !ballotHasStarted && <UrneConfig />}
-      {voteHasStarted && ballotHasStarted && <Ballot />}
+      {showAcceuil && <Acceuil />}
+      {showUrneConfig && <UrneConfig />}
+      {showBallot && <Ballot />}
     </div>
   );
 }

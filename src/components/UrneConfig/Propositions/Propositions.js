@@ -21,7 +21,7 @@ export default function Propositions() {
   let newTitleIsValid = false;
   if (title.trim() !== "") newTitleIsValid = true;
 
-  const newTitleHandler = e => setTitle(e.target.value.toLowerCase());
+  const newTitleHandler = e => setTitle(e.target.value);
 
   const blurTitleHandler = () => setTitleTouched(true);
 
@@ -49,7 +49,7 @@ export default function Propositions() {
 
   const [newProposition, setNewProposition] = useState("");
   const newPropositionHandler = e => {
-    setNewProposition(e.target.value.toLowerCase());
+    setNewProposition(e.target.value);
   };
 
   let newPropositionIsValid = false;
@@ -62,7 +62,7 @@ export default function Propositions() {
 
   const addHandler = () => {
     if (newPropositionIsValid) {
-      setList([...list, newProposition.trim().toLowerCase()]);
+      setList([...list, newProposition.trim()]);
       setNewProposition("");
     }
   };

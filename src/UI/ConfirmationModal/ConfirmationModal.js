@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { createPortal } from "react-dom";
 
-import styles from "./ConfirmationModal.module.css";
 import Backdrop from "./Backdrop/Backdrop";
 import Overlay from "./Overlay/Overlay";
 

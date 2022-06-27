@@ -26,11 +26,11 @@ export default function PasswordSetup() {
   const savePasswordHandler = () =>
     dispatch(voteActions.savePassword(password));
 
-  console.log("password:", password);
-  console.log("inputIsValid(password):", inputIsValid(password));
-  console.log("confirmation:", confirmation);
-  console.log("inputIsValid(confirmation):", inputIsValid(confirmation));
-  console.log("passwordConfigIsValid:", passwordConfigIsValid);
+  // console.log("password:", password);
+  // console.log("inputIsValid(password):", inputIsValid(password));
+  // console.log("confirmation:", confirmation);
+  // console.log("inputIsValid(confirmation):", inputIsValid(confirmation));
+  // console.log("passwordConfigIsValid:", passwordConfigIsValid);
 
   return (
     <div className={styles.container}>

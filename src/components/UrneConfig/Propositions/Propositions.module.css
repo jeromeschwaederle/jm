@@ -85,10 +85,15 @@
   display: block;
 
   border: none;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: 700;
 
   flex-grow: 1;
+}
+
+.input::placeholder,
+.input__new::placeholder {
+  color: rgba(1, 13, 9, 0.2);
 }
 
 .input {
