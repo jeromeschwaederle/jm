@@ -22,6 +22,10 @@ export const voteSlice = createSlice({
     resetVotingProcess() {
       return initialState;
     },
+    saveVoteSubject(state, action) {
+      state.title = action.payload.title;
+      state.propositions = action.payload.propositions;
+    },
   },
 });
 

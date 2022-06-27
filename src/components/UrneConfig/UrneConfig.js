@@ -6,6 +6,7 @@ import Propositions from "./Propositions/Propositions";
 import IconClose from "../../UI/Icons/IconClose";
 import ConfirmationModal from "../../UI/ConfirmationModal/ConfirmationModal";
 import { TEXT } from "../../UI/textConstants";
+import PasswordSetup from "./PasswordSetup/PasswordSetup";
 
 export default function UrneConfig() {
   const [showOverlayQuit, setShowOverlayQuit] = useState(false);
@@ -29,5 +30,8 @@ export default function UrneConfig() {
         <Propositions />
       </div>
     );
+  }
+  if (title && propositions) {
+    return <PasswordSetup />;
   }
 }

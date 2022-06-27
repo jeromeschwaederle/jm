@@ -35,6 +35,13 @@ export const TEXT = {
       label: "Propositions",
       placeholder: "Nouvelle propostition",
     },
+    password: {
+      pageTitle: "sécuriser les résultats",
+      pageText:
+        "Notez bien votre mot de passe. Ce sera le seul moyen d'accéder aux résultats une fois que tout le monde se sera exprimé.",
+      label: { 1: "mot de passe", 2: "confirmation" },
+      placeholder: { 1: "mot de passe", 2: "confirmation" },
+    },
   },
   Overlay: {
     textLooseData:

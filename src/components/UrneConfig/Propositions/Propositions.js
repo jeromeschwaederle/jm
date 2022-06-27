@@ -1,15 +1,19 @@
 import { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 
 import styles from "./Propositions.module.css";
 import IconClose from "../../../UI/Icons/IconClose";
 import IconCheck from "../../../UI/Icons/IconCheck";
+import IconPencil from "../../../UI/Icons/IconPencil";
 import Button from "../../../UI/Button/Button";
+import { voteActions } from "../../../store/voteSlice";
 
 export default function Propositions() {
   // ########################################
   // Title
   // ########################################
   const [title, setTitle] = useState("");
+  const [titleTouched, setTitleTouched] = useState(false);
   const [titleSaved, setTitleSaved] = useState(false);
   const titleRef = useRef();
 
@@ -17,6 +21,8 @@ export default function Propositions() {
   if (title.trim() !== "") newTitleIsValid = true;
 
   const newTitleHandler = e => setTitle(e.target.value.toLowerCase());
+
+  const blurTitleHandler = () => setTitleTouched(true);
 
   const saveTitle = () => {
     if (newTitleIsValid) setTitleSaved(true);
@@ -41,30 +47,28 @@ export default function Propositions() {
   const [list, setList] = useState([]);
 
   const [newProposition, setNewProposition] = useState("");
-  const newPropositionHandler = e =>
+  const newPropositionHandler = e => {
     setNewProposition(e.target.value.toLowerCase());
+  };
 
   let newPropositionIsValid = false;
   if (
     newProposition.trim() !== "" &&
-    !list.find(element => element.value === newProposition.trim())
+    !list.find(element => element === newProposition.trim())
   ) {
     newPropositionIsValid = true;
   }
 
   const addHandler = () => {
     if (newPropositionIsValid) {
-      setList(oldState => [
-        ...oldState,
-        { id: oldState.length + 1, value: newProposition.trim().toLowerCase() },
-      ]);
+      setList([...list, newProposition.trim().toLowerCase()]);
       setNewProposition("");
     }
   };
 
   const removeHandler = e => {
-    const itemClickedId = Number(e.target.closest(`.${styles.listItem}`).id);
-    const updatedList = list.filter(item => item.id !== itemClickedId);
+    const itemClicked = e.target.closest(`.${styles.listItem}`).id;
+    const updatedList = list.filter(item => item !== itemClicked);
     setList(() => updatedList);
   };
 
@@ -77,20 +81,30 @@ export default function Propositions() {
 
   const [formIsChecked, setFormIsChecked] = useState(false);
 
-  const submitHandler = () => {
-    if (!formIsChecked) setFormIsChecked(true);
-    if (formIsChecked) console.log("LE VOTE COMMENCE");
-  };
-
-  //TO DO modifier la logique de l'id des propositions
-
   const modifyInputHandler = () => setFormIsChecked(false);
+
+  const dispatch = useDispatch();
+  const submitHandler = () => {
+    if (!formIsChecked) {
+      console.log("click");
+      setFormIsChecked(true);
+    }
+    if (formIsChecked)
+      dispatch(
+        voteActions.saveVoteSubject({ title: title, propositions: list })
+      );
+  };
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.pageTitle}>
-        {formIsChecked ? "Tout est OK ?" : "Configuration"}
-      </h1>
+      {formIsChecked ? (
+        <h1 className={styles.pageTitle}>Tout est OK ?</h1>
+      ) : (
+        <span className={styles.iconPencil}>
+          <IconPencil />
+        </span>
+      )}
+
       <section className={styles.sectionTitle}>
         <h2 className={styles.sectionTitle}>Titre</h2>
         <ul>
@@ -101,6 +115,7 @@ export default function Propositions() {
               type={"text"}
               placeholder="titre"
               onChange={newTitleHandler}
+              onBlur={blurTitleHandler}
               value={title}
               autoFocus={true}
             />
@@ -123,6 +138,12 @@ export default function Propositions() {
               </Button>
             )}
           </li>
+          {titleTouched && !titleSaved && (
+            <p className={styles.warningMessage}>
+              <span>&#9888; </span>
+              veuillez confirmer le titre.
+            </p>
+          )}
         </ul>
       </section>
       <section className={styles.sectionList}>
@@ -131,14 +152,13 @@ export default function Propositions() {
           {list.map(item => (
             <li
               className={`${styles.listItem} ${styles.listItem__saved}`}
-              key={item.id}
-              id={item.id}
+              key={item}
+              id={item}
             >
               <input
                 className={styles.input}
                 type={"text"}
-                id={item.id}
-                value={item.value}
+                value={item}
                 readOnly
               />
 
