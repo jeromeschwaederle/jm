@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 // import { current } from "@reduxjs/toolkit";
 
 const initialState = {
-  hasStarted: false,
+  votingProcesshasStarted: false,
+  ballotHasStarted: false,
   title: undefined,
   propositions: undefined,
   password: undefined,
@@ -17,7 +18,7 @@ export const voteSlice = createSlice({
   initialState,
   reducers: {
     startVotingProcess(state) {
-      state.hasStarted = true;
+      state.votingProcesshasStarted = true;
     },
     resetVotingProcess() {
       return initialState;
@@ -25,6 +26,12 @@ export const voteSlice = createSlice({
     saveVoteSubject(state, action) {
       state.title = action.payload.title;
       state.propositions = action.payload.propositions;
+    },
+    savePassword(state, action) {
+      state.password = action.payload;
+    },
+    startBallot(state) {
+      state.ballotHasStarted = true;
     },
   },
 });

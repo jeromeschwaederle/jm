@@ -4,7 +4,7 @@
   bottom: 20vh;
   right: 10vw;
   left: 10vw;
-  z-index: 10;
+  z-index: 1000;
 
   color: #e6f2ef;
   font-weight: 700;

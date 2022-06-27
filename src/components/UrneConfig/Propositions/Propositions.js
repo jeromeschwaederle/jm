@@ -7,6 +7,7 @@ import IconCheck from "../../../UI/Icons/IconCheck";
 import IconPencil from "../../../UI/Icons/IconPencil";
 import Button from "../../../UI/Button/Button";
 import { voteActions } from "../../../store/voteSlice";
+import { TEXT } from "../../../UI/textConstants";
 
 export default function Propositions() {
   // ########################################
@@ -85,10 +86,7 @@ export default function Propositions() {
 
   const dispatch = useDispatch();
   const submitHandler = () => {
-    if (!formIsChecked) {
-      console.log("click");
-      setFormIsChecked(true);
-    }
+    if (!formIsChecked) setFormIsChecked(true);
     if (formIsChecked)
       dispatch(
         voteActions.saveVoteSubject({ title: title, propositions: list })
@@ -98,7 +96,9 @@ export default function Propositions() {
   return (
     <div className={styles.container}>
       {formIsChecked ? (
-        <h1 className={styles.pageTitle}>Tout est OK ?</h1>
+        <h1 className={styles.pageTitle}>
+          {TEXT.configurationUrne.propositions.titre}
+        </h1>
       ) : (
         <span className={styles.iconPencil}>
           <IconPencil />
@@ -106,14 +106,18 @@ export default function Propositions() {
       )}
 
       <section className={styles.sectionTitle}>
-        <h2 className={styles.sectionTitle}>Titre</h2>
+        <h2 className={styles.sectionTitle}>
+          {TEXT.configurationUrne.propositions.input_1.label}
+        </h2>
         <ul>
           <li className={titleStyles}>
             <input
               ref={titleRef}
               className={titleinputStyles}
               type={"text"}
-              placeholder="titre"
+              placeholder={
+                TEXT.configurationUrne.propositions.input_1.placeholder
+              }
               onChange={newTitleHandler}
               onBlur={blurTitleHandler}
               value={title}
@@ -140,14 +144,15 @@ export default function Propositions() {
           </li>
           {titleTouched && !titleSaved && (
             <p className={styles.warningMessage}>
-              <span>&#9888; </span>
-              veuillez confirmer le titre.
+              {TEXT.configurationUrne.propositions.errorMessage}
             </p>
           )}
         </ul>
       </section>
       <section className={styles.sectionList}>
-        <h2 className={styles.sectionTitle}>Propositions</h2>
+        <h2 className={styles.sectionTitle}>
+          {TEXT.configurationUrne.propositions.input_2.label}
+        </h2>
         <ul className={styles.list}>
           {list.map(item => (
             <li
@@ -179,7 +184,9 @@ export default function Propositions() {
               <input
                 className={styles.input__new}
                 type={"text"}
-                placeholder="proposition"
+                placeholder={
+                  TEXT.configurationUrne.propositions.input_2.placeholder
+                }
                 onChange={newPropositionHandler}
                 value={newProposition}
               />
@@ -202,7 +209,11 @@ export default function Propositions() {
           primary
           disabled={!formIsValid}
         >
-          {formIsChecked ? "Confirmer" : <IconCheck />}
+          {formIsChecked ? (
+            TEXT.configurationUrne.propositions.button[1]
+          ) : (
+            <IconCheck />
+          )}
         </Button>
         {formIsChecked && (
           <Button
@@ -210,7 +221,7 @@ export default function Propositions() {
             secondary
             className={styles.btnSubmit}
           >
-            Modifier
+            {TEXT.configurationUrne.propositions.button[2]}
           </Button>
         )}
       </div>

@@ -26,14 +26,18 @@ export const TEXT = {
     },
   ],
   configurationUrne: {
-    titre: "nouvelle urne",
-    input_1: {
-      label: "titre",
-      placeholder: "S'exprimer à propos de...",
-    },
-    input_2: {
-      label: "Propositions",
-      placeholder: "Nouvelle propostition",
+    propositions: {
+      titre: "Tout est OK ?",
+      errorMessage: "Veuillez confirmer le titre.",
+      input_1: {
+        label: "titre",
+        placeholder: "titre",
+      },
+      input_2: {
+        label: "Propositions",
+        placeholder: "propositition",
+      },
+      button: { 1: "confirmer", 2: "modifier" },
     },
     password: {
       pageTitle: "sécuriser les résultats",
@@ -41,6 +45,11 @@ export const TEXT = {
         "Notez bien votre mot de passe. Ce sera le seul moyen d'accéder aux résultats une fois que tout le monde se sera exprimé.",
       label: { 1: "mot de passe", 2: "confirmation" },
       placeholder: { 1: "mot de passe", 2: "confirmation" },
+    },
+    voteIsReady: {
+      title: "Votre urne mobile est prête !",
+      text: "Les participants peuvent remplir leur bulletin sur cet appareil chacun leur tour.",
+      button: "premier bulletin",
     },
   },
   Overlay: {

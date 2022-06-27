@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import styles from "./PasswordSetup.module.css";
 import { TEXT } from "../../../UI/textConstants";
 import IconLock from "../../../UI/Icons/IconLock";
-
-// TO DO  FAIRE DES COMPOSANTS INDÉPENDANT POUR LES FORMULAIRES
+import Button from "../../../UI/Button/Button";
+import IconCheck from "../../../UI/Icons/IconCheck";
+import { voteActions } from "../../../store/voteSlice";
 
 const inputIsValid = input => input.trim() !== "";
 const passwordMatch = (password, confirmation) => password === confirmation;
@@ -17,12 +19,17 @@ export default function PasswordSetup() {
     inputIsValid(confirmation) &&
     passwordMatch(password, confirmation);
 
-  const passwordHandler = e => setPassword(e.target.value.trim());
+  const passwordHandler = e => setPassword(e.target.value);
+  const confirmationHandler = e => setConfirmation(e.target.value);
 
-  const confirmationHandler = e => setConfirmation(e.target.value.trim());
+  const dispatch = useDispatch();
+  const savePasswordHandler = () =>
+    dispatch(voteActions.savePassword(password));
 
   console.log("password:", password);
+  console.log("inputIsValid(password):", inputIsValid(password));
   console.log("confirmation:", confirmation);
+  console.log("inputIsValid(confirmation):", inputIsValid(confirmation));
   console.log("passwordConfigIsValid:", passwordConfigIsValid);
 
   return (
@@ -67,6 +74,14 @@ export default function PasswordSetup() {
             ></input>
           </li>
         </ul>
+        <Button
+          onClick={savePasswordHandler}
+          primary
+          className={styles.btnConfirmPassword}
+          disabled={!passwordConfigIsValid}
+        >
+          <IconCheck />
+        </Button>
       </form>
     </div>
   );
