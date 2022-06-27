@@ -1,14 +1,11 @@
-import { useDispatch } from "react-redux";
-
-import { voteActions } from "../../../store/voteSlice";
+import { voteActions } from "../../../../store/voteSlice";
 import styles from "./VoteIsReady.module.css";
-import IconCheck from "../../../UI/Icons/IconCheck";
-import { TEXT } from "../../../UI/textConstants";
-import Button from "../../../UI/Button/Button";
+import IconCheck from "../../../../UI/Icons/IconCheck";
+import { TEXT } from "../../../../UI/textConstants";
+import Button from "../../../../UI/Button/Button";
 
-export default function VoteIsReady() {
-  const dispatch = useDispatch();
-  const clickHandler = () => dispatch(voteActions.startBallot());
+export default function VoteIsReady({ setLaunchBallot }) {
+  const clickHandler = () => setLaunchBallot(true);
 
   return (
     <div className={styles.container}>

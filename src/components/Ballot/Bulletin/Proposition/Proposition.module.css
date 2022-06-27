@@ -1,7 +1,7 @@
 .container {
   border: 0.3rem solid rgba(0, 0, 0, 0.5);
   background-color: #fff;
-  border-radius: 0 3.2rem 3.2rem;
+  border-radius: 3.2rem 0rem;
   overflow: hidden;
 }
 
@@ -30,7 +30,7 @@
 }
 .listItems {
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 900;
   width: 100%;
   text-align: center;
   padding: 0.8rem 0;
@@ -39,26 +39,27 @@
 }
 
 .mention_0 {
-  color: #0b7285;
+  color: #2b8a3e;
 }
 .mention_1 {
   color: #087f5b;
 }
 .mention_2 {
-  color: #2b8a3e;
+  color: #0b7285;
 }
 .mention_3 {
-  color: #5c940d;
+  color: #1864ab;
 }
 .mention_4 {
-  color: #e67700;
+  color: #364fc7;
 }
 .mention_5 {
-  color: #d9480f;
+  color: #5f3dc4;
 }
 .mention_6 {
   color: #343a40;
 }
+
 .mentionSelected {
   background-color: currentColor;
 }
