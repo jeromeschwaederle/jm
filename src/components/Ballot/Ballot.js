@@ -22,7 +22,9 @@ export default function Ballot() {
           setOneBallotHasBeenCasted={setOneBallotHasBeenCasted}
         />
       )}
-      {showVoteCasted && <VoteCasted />}
+      {showVoteCasted && (
+        <VoteCasted setOneBallotHasBeenCasted={setOneBallotHasBeenCasted} />
+      )}
     </div>
   );
 }

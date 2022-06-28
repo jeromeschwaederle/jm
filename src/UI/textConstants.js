@@ -61,7 +61,10 @@ export const TEXT = {
       btn_modify: "Modifier",
     },
     voteCasted: {
-      info: "bulletin(s) dans l'urne",
+      info: {
+        singular: "bulletin dans l'urne",
+        plural: "bulletins dans l'urne",
+      },
       title: "a voté !",
       text: "Votre Participation a bien été prise en compte. Vous pouvez maintenent passer cet appareil au prochain participant.",
       btn_continue: "bulletin suivant",

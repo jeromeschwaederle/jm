@@ -53,6 +53,11 @@ export const voteSlice = createSlice({
     registerOneVote(state, action) {
       state.ballotBox.push(action.payload);
     },
+    accessResults(state, action) {
+      if (state.demandAccesResults === false) {
+        state.demandAccesResults = true;
+      }
+    },
   },
 });
 

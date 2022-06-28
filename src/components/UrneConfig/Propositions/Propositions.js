@@ -105,8 +105,8 @@ export default function Propositions() {
         </span>
       )}
 
-      <section className={styles.sectionTitle}>
-        <h2 className={styles.sectionTitle}>
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle_title}>
           {TEXT.configurationUrne.propositions.input_1.label}
         </h2>
         <ul>
@@ -149,8 +149,8 @@ export default function Propositions() {
           )}
         </ul>
       </section>
-      <section className={styles.sectionList}>
-        <h2 className={styles.sectionTitle}>
+      <section className={`${styles.section} ${styles.sectionList}`}>
+        <h2 className={styles.sectionTitle_title}>
           {TEXT.configurationUrne.propositions.input_2.label}
         </h2>
         <ul className={styles.list}>
