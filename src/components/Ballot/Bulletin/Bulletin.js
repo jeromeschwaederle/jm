@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 
 import styles from "./Bulletin.module.css";
@@ -6,19 +6,34 @@ import { TEXT } from "../../../UI/textConstants";
 import Proposition from "./Proposition/Proposition";
 import Button from "../../../UI/Button/Button";
 import IconCheck from "../../../UI/Icons/IconCheck";
+import { voteActions } from "../../../store/voteSlice";
 
 const toTheTop = () => window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
-export default function Bulletin() {
-  const [validated, setValidated] = useState(false);
-  const [confirmed, setConfirmed] = useState(false);
-
+export default function Bulletin({
+  setLaunchBallot,
+  setOneBallotHasBeenCasted,
+}) {
   const propositions = useSelector(state => state.vote.propositions);
+
   const ballotPurpose = useSelector(state => state.vote.title);
+  const standardBallot = useSelector(state => state.vote.standardBallot);
+  // console.log("standardBallot:", standardBallot);
+
+  const [ballot, setBallot] = useState(standardBallot);
+  console.log("ballot:", ballot);
+  const [validated, setValidated] = useState(false);
+  const dispatch = useDispatch();
 
   const primaryClickHandler = () => {
-    setValidated(true);
-    toTheTop();
+    if (!validated) {
+      setValidated(true);
+      toTheTop();
+    }
+    if (validated) {
+      dispatch(voteActions.registerOneVote(ballot));
+      setOneBallotHasBeenCasted(true);
+    }
   };
 
   const secondaryClickHandler = () => {
@@ -26,6 +41,13 @@ export default function Bulletin() {
       setValidated(false);
       toTheTop();
     }
+    if (!validated) {
+      setLaunchBallot(false);
+    }
+  };
+
+  const tertiaryClickHandler = () => {
+    setLaunchBallot(false);
   };
 
   return (
@@ -40,7 +62,13 @@ export default function Bulletin() {
       </header>
       <div className={styles.propositions}>
         {propositions.map((proposition, i) => (
-          <Proposition key={i} text={proposition} validated={validated} />
+          <Proposition
+            key={i}
+            propositionId={i}
+            text={proposition}
+            validated={validated}
+            setBallot={setBallot}
+          />
         ))}
       </div>
       <div className={styles.controls}>
@@ -60,6 +88,15 @@ export default function Bulletin() {
             ? TEXT.Ballot.Bulletin.btn_modify
             : TEXT.Ballot.Bulletin.btn_delete}
         </Button>
+        {validated && (
+          <Button
+            secondary
+            onClick={tertiaryClickHandler}
+            className={`${styles.btn} ${styles.btnSupprimer}`}
+          >
+            {TEXT.Ballot.Bulletin.btn_delete}
+          </Button>
+        )}
       </div>
     </div>
   );

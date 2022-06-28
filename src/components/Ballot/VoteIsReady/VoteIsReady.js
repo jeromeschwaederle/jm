@@ -1,8 +1,7 @@
-import { voteActions } from "../../../../store/voteSlice";
 import styles from "./VoteIsReady.module.css";
-import IconCheck from "../../../../UI/Icons/IconCheck";
-import { TEXT } from "../../../../UI/textConstants";
-import Button from "../../../../UI/Button/Button";
+import IconCheck from "../../../UI/Icons/IconCheck";
+import { TEXT } from "../../../UI/textConstants";
+import Button from "../../../UI/Button/Button";
 
 export default function VoteIsReady({ setLaunchBallot }) {
   const clickHandler = () => setLaunchBallot(true);

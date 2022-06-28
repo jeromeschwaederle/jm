@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 import styles from "./Proposition.module.css";
-import { TEXT } from "../../../../UI/textConstants";
 
-export default function Proposition({ text, validated }) {
-  const mentions = TEXT.Ballot.Bulletin.mentions;
+export default function Proposition(props) {
+  const { text, validated, propositionId, setBallot } = props;
+  const mentions = useSelector(state => state.vote.mentions);
   const [indexOfSelected, setIndexOfSelected] = useState(mentions.length - 1);
   const clickHandler = e => {
     setIndexOfSelected(Number(e.target.closest(`.${styles.listItems}`).id));
   };
+
+  useEffect(() => {
+    setBallot(state => {
+      return { ...state, [propositionId]: indexOfSelected };
+    });
+  }, [propositionId, indexOfSelected, setBallot]);
 
   return (
     <div
