@@ -11,16 +11,34 @@ const initialState = {
     "insuffisant.e",
     "à rejeter",
   ],
-  votingProcesshasStarted: false,
-  ballotHasStarted: false,
-  title: undefined,
-  propositions: undefined,
-  password: undefined,
-  standardBallot: undefined,
-  ballotBox: [],
+  // votingProcesshasStarted: false,
+  // ballotHasStarted: false,
+  // title: undefined,
+  // propositions: undefined,
+  // password: undefined,
+  // standardBallot: undefined,
+  // ballotBox: [],
+  // results: undefined,
+  // demandAccesResults: false,
+  // accessResults: false,
+  //#####################
+  ////////////// Pour tester
+  //####################
+  votingProcesshasStarted: true,
+  ballotHasStarted: true,
+  title: "a",
+  propositions: ["a", "aa", "aaa"],
+  password: "a",
+  standardBallot: { 0: 6, 1: 6, 2: 6 },
+  ballotBox: [
+    { 0: 1, 1: 4, 2: 5 },
+    { 0: 4, 1: 1, 2: 0 },
+    { 0: 4, 1: 6, 2: 2 },
+    { 0: 6, 1: 6, 2: 6 },
+  ],
   results: undefined,
-  demandAccesResults: false,
-  accessResults: false,
+  demandAccesResults: true,
+  accessResults: true,
 };
 
 export const voteSlice = createSlice({
@@ -54,14 +72,20 @@ export const voteSlice = createSlice({
       state.ballotBox.push(action.payload);
     },
     accessResults(state, action) {
-      if (action.payload === "REVOKE") {
-        state.demandAccesResults = false;
-      }
-      if (state.demandAccesResults === false && action.payload !== "REVOKE") {
+      if (
+        state.demandAccesResults === false &&
+        action.payload === "ACCES_RESULTS"
+      ) {
         state.demandAccesResults = true;
       }
-      if (state.demandAccesResults === true && action.payload !== "REVOKE") {
+      if (
+        state.demandAccesResults === true &&
+        action.payload === "ACCES_GRANTED"
+      ) {
         state.accessResults = true;
+      }
+      if (action.payload === "REVOKE") {
+        state.demandAccesResults = false;
       }
     },
   },

@@ -29,7 +29,7 @@ export default function PasswordCheck() {
 
   const passwordCheckHandler = () => {
     if (passwordMatch(password, enteredPassword)) {
-      console.log("LES PASSWORDS MATCH !!!!");
+      dispatch(voteActions.accessResults("ACCES_GRANTED"));
     }
     if (!passwordMatch(password, enteredPassword)) {
       setShowErrorMessage(true);
