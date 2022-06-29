@@ -54,12 +54,14 @@ export const voteSlice = createSlice({
       state.ballotBox.push(action.payload);
     },
     accessResults(state, action) {
-      console.log(action.payload);
       if (action.payload === "REVOKE") {
         state.demandAccesResults = false;
       }
       if (state.demandAccesResults === false && action.payload !== "REVOKE") {
         state.demandAccesResults = true;
+      }
+      if (state.demandAccesResults === true && action.payload !== "REVOKE") {
+        state.accessResults = true;
       }
     },
   },

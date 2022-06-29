@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import styles from "./Ballot.module.css";
 import Bulletin from "./Bulletin/Bulletin";
 import VoteIsReady from "./VoteIsReady/VoteIsReady";
 import VoteCasted from "./VoteCasted/VoteCasted";
@@ -16,7 +15,7 @@ export default function Ballot() {
   const showVoteCasted = launchBallot && oneBallotHasBeenCasted;
 
   return (
-    <div className={styles.container}>
+    <div>
       <RebootModal />
       {showVoteIsReady && <VoteIsReady setLaunchBallot={setLaunchBallot} />}
       {showBulletin && (

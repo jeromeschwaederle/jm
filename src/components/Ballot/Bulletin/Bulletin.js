@@ -21,7 +21,6 @@ export default function Bulletin({
   // console.log("standardBallot:", standardBallot);
 
   const [ballot, setBallot] = useState(standardBallot);
-  console.log("ballot:", ballot);
   const [validated, setValidated] = useState(false);
   const dispatch = useDispatch();
 

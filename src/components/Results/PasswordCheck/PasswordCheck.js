@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
 import styles from "./PasswordCheck.module.css";
 import { TEXT } from "../../../UI/textConstants";
