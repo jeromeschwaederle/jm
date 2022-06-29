@@ -1,6 +1,6 @@
 .container {
   border: 0.3rem solid rgba(0, 0, 0, 0.5);
-  background-color: #fff;
+  background-color: #f3f9f7;
   border-radius: 3.2rem 0rem;
   overflow: hidden;
 }
@@ -34,7 +34,7 @@
   width: 100%;
   text-align: center;
   padding: 0.8rem 0;
-  background-color: #fff;
+  background-color: #f3f9f7;
   cursor: pointer;
 }
 
@@ -64,5 +64,5 @@
   background-color: currentColor;
 }
 .mentionSelected span {
-  color: #fff;
+  color: #f3f9f7;
 }

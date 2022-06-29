@@ -71,9 +71,21 @@ export const TEXT = {
       btn_results: "résultats",
     },
   },
-  Overlay: {
+  results: {
+    passwordCheck: {
+      title: "accéder aux résultats",
+      text: "Veuillez saisir le mot de passe de protection pour clore la phase de participation et accéder aux résultats.",
+      label: "Mot de passe",
+      btn_backToVote: "retour",
+      error: {
+        errorMessage: "Mot de passe erroné.",
+        errorBtnText: "OK",
+      },
+    },
+  },
+  overlay: {
     textLooseData:
-      "Toutes les données saisies vont être perdues. Voulez-vous continuer ?",
+      "Toutes les données du vote vont être perdues. Voulez-vous définitivement clore et supprimer ce scrutin dans son ensemble ?",
     yes: "oui",
     no: "non",
   },

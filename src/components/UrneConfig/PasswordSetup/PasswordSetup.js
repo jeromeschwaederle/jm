@@ -28,12 +28,6 @@ export default function PasswordSetup() {
     dispatch(voteActions.startBallot());
   };
 
-  // console.log("password:", password);
-  // console.log("inputIsValid(password):", inputIsValid(password));
-  // console.log("confirmation:", confirmation);
-  // console.log("inputIsValid(confirmation):", inputIsValid(confirmation));
-  // console.log("passwordConfigIsValid:", passwordConfigIsValid);
-
   return (
     <div className={styles.container}>
       <header className={styles.header}>

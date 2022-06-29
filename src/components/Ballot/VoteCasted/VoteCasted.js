@@ -13,7 +13,6 @@ export default function VoteCasted({ setOneBallotHasBeenCasted }) {
   const primaryClickHandler = () => setOneBallotHasBeenCasted(false);
 
   const secondaryClickHandler = () => {
-    console.log("CLICK RESULTS");
     dispatch(voteActions.accessResults());
   };
 

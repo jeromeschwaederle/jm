@@ -5,6 +5,8 @@ import Bulletin from "./Bulletin/Bulletin";
 import VoteIsReady from "./VoteIsReady/VoteIsReady";
 import VoteCasted from "./VoteCasted/VoteCasted";
 
+import RebootModal from "../RebootModal/RebootModal";
+
 export default function Ballot() {
   const [launchBallot, setLaunchBallot] = useState(false);
   const [oneBallotHasBeenCasted, setOneBallotHasBeenCasted] = useState(false);
@@ -15,6 +17,7 @@ export default function Ballot() {
 
   return (
     <div className={styles.container}>
+      <RebootModal />
       {showVoteIsReady && <VoteIsReady setLaunchBallot={setLaunchBallot} />}
       {showBulletin && (
         <Bulletin
