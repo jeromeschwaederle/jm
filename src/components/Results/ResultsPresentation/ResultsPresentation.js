@@ -3,32 +3,20 @@ import { useSelector } from "react-redux";
 import styles from "./ResultsPresentation.module.css";
 
 export default function ResultsPresentation() {
-  const ballotBox = useSelector(state => state.vote.ballotBox);
-  console.log("ballotBox:", ballotBox);
+  const mentions = useSelector(state => state.vote.mentions);
+  const propositions = useSelector(state => state.vote.propositions);
+  const ballotBoxSorted = useSelector(state => state.vote.ballotBoxSorted);
+  const ranking = useSelector(state => state.vote.results);
+  console.log("ranking:", ranking);
 
-  // ############################################################
-
-  const sortBallotBox = ballotBox => {
-    const unsortedProfiles = Object.keys(ballotBox[0]).map(() => []);
-
-    ballotBox.forEach(bulletin => {
-      for (const [key, value] of Object.entries(bulletin)) {
-        unsortedProfiles[key].push(value);
-      }
-    });
-
-    const sortedProfiles = unsortedProfiles.map(profile => {
-      const arrayToSort = [...profile];
-      return arrayToSort.sort((a, b) => a - b);
-    });
-
-    return sortedProfiles;
-  };
-
-  // ############################################################
-
-  const sortedProfiles = sortBallotBox(ballotBox);
-  console.log("sortedProfiles:", sortedProfiles);
-
-  return <div className={styles.container}>ResultsPresentation</div>;
+  return (
+    <div className={styles.container}>
+      <h2 className={styles.pageTitle}>Résultats</h2>
+      <ul>
+        {ballotBoxSorted.map((profile, index) => (
+          <li key={index}>{profile}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }

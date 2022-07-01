@@ -1,3 +1,8 @@
 .container {
-  color: red;
+  /* color: red; */
+}
+
+.pageTitle {
+  text-align: center;
+  margin: 4.8rem 0;
 }

@@ -13,7 +13,8 @@ export default function VoteIsReady({ setLaunchBallot }) {
   const numberOfBallots = ballotBox.length;
 
   const clickHandler = () => setLaunchBallot(true);
-  const goToResultsHandler = () => dispatch(voteActions.accessResults());
+  const goToResultsHandler = () =>
+    dispatch(voteActions.accessResults("ACCES_RESULTS"));
 
   return (
     <div className={styles.container}>

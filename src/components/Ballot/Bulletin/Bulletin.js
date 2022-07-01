@@ -55,7 +55,7 @@ export default function Bulletin({
         <h1 className={styles.pageTitle}>{ballotPurpose}</h1>
         <p className={styles.question}>
           {TEXT.Ballot.Bulletin.statement_part_1}
-          <span>{ballotPurpose}</span>
+          <span>{`"${ballotPurpose.toLowerCase()}"`}</span>
           {TEXT.Ballot.Bulletin.statement_part_2}
         </p>
       </header>
