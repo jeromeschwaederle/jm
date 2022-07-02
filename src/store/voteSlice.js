@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 // import { current } from "@reduxjs/toolkit";
 
-import { sortBallotBox, computeResults } from "./algo";
+import { sortBallotBox, computeResults, computeMention } from "./algo";
 
 const initialState = {
   mentions: [
@@ -29,8 +29,7 @@ const initialState = {
   password: undefined,
   standardBallot: undefined,
   ballotBox: [],
-  ballotBoxSorted: [],
-  results: undefined,
+  results: { profiles: [], ranking: [], mentions: [] },
   demandAccesResults: false,
   accessResults: false,
   //##########################################
@@ -39,21 +38,36 @@ const initialState = {
   // votingProcesshasStarted: true,
   // ballotHasStarted: true,
   // title: "Choisir ce que l'on va manger ce soir",
-  // propositions: ["Hamburger", "Pizza", "Döner"],
+  // propositions: [
+  //   "Hamburger",
+  //   "Pizza",
+  //   "Döner avec beaucoup de piment",
+  //   "Sushi",
+  //   "Italien",
+  //   "Libanais",
+  //   "Végé",
+  // ],
   // password: "a",
   // standardBallot: { 0: 6, 1: 6, 2: 6 },
   // ballotBox: [
-  //   { 0: 1, 1: 0, 2: 3, 3: 0, 4: 2, 5: 1, 6: 2 },
+  //   { 0: 1, 1: 0, 2: 0, 3: 0, 4: 2, 5: 1, 6: 2 },
   //   { 0: 2, 1: 1, 2: 0, 3: 0, 4: 3, 5: 3, 6: 3 },
-  //   { 0: 3, 1: 1, 2: 2, 3: 1, 4: 1, 5: 4, 6: 1 },
-  //   { 0: 2, 1: 1, 2: 1, 3: 0, 4: 2, 5: 3, 6: 2 },
-  //   { 0: 2, 1: 2, 2: 1, 3: 0, 4: 2, 5: 3, 6: 2 },
-  //   { 0: 2, 1: 1, 2: 0, 3: 0, 4: 2, 5: 2, 6: 2 },
-  //   { 0: 2, 1: 1, 2: 1, 3: 0, 4: 2, 5: 2, 6: 2 },
+  //   { 0: 3, 1: 1, 2: 1, 3: 1, 4: 1, 5: 4, 6: 1 },
+  //   { 0: 4, 1: 1, 2: 0, 3: 0, 4: 2, 5: 3, 6: 2 },
+  //   { 0: 6, 1: 2, 2: 0, 3: 0, 4: 2, 5: 3, 6: 2 },
+  //   { 0: 5, 1: 4, 2: 0, 3: 0, 4: 2, 5: 2, 6: 2 },
+
+  //   { 0: 4, 1: 4, 2: 0, 3: 0, 4: 4, 5: 4, 6: 4 },
+  //   { 0: 6, 1: 6, 2: 6, 3: 6, 4: 0, 5: 6, 6: 2 },
+  //   { 0: 5, 1: 3, 2: 5, 3: 5, 4: 0, 5: 3, 6: 5 },
+  //   { 0: 3, 1: 3, 2: 3, 3: 3, 4: 0, 5: 3, 6: 3 },
+  //   { 0: 2, 1: 4, 2: 6, 3: 6, 4: 2, 5: 2, 6: 2 },
+  //   // { 0: 2, 1: 4, 2: 2, 3: 6, 4: 2, 5: 2, 6: 2 },
   // ],
-  // results: undefined,
+  // results: { profiles: [], ranking: [], mentions: [] },
+
   // demandAccesResults: true,
-  // accessResults: true,
+  // accessResults: false,
 };
 
 export const voteSlice = createSlice({
@@ -104,8 +118,12 @@ export const voteSlice = createSlice({
       }
     },
     makeResults(state) {
-      state.ballotBoxSorted = sortBallotBox(state.ballotBox);
-      state.results = computeResults(state.ballotBoxSorted);
+      state.results.profiles = sortBallotBox(state.ballotBox);
+      state.results.ranking = computeResults(state.results.profiles);
+      state.results.mentions = computeMention(
+        state.results.profiles,
+        state.mentions
+      );
     },
   },
 });

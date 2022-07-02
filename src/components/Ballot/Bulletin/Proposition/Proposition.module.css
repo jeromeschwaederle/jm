@@ -1,6 +1,6 @@
 .container {
   border: 0.3rem solid rgba(0, 0, 0, 0.5);
-  background-color: #f3f9f7;
+  background-color: #fff;
   border-radius: 3.2rem 0rem;
   overflow: hidden;
 }
@@ -29,32 +29,34 @@
   /* font-family: sans-serif; */
 }
 .listItems {
+  /* font-family: sans-serif; */
   text-transform: uppercase;
   font-weight: 900;
+  /* text-shadow: 0 0 3rem #010d09; */
   width: 100%;
   text-align: center;
   padding: 0.4rem 0;
-  background-color: #f3f9f7;
+  background-color: #fff;
   cursor: pointer;
 }
 
 .mention_0 {
-  color: #2b8a3e;
+  color: #099268;
 }
 .mention_1 {
-  color: #087f5b;
+  color: #2f9e44;
 }
 .mention_2 {
-  color: #0b7285;
+  color: #68a413;
 }
 .mention_3 {
-  color: #1864ab;
+  color: #c48a03;
 }
 .mention_4 {
-  color: #364fc7;
+  color: #f76707;
 }
 .mention_5 {
-  color: #5f3dc4;
+  color: #c92a2a;
 }
 .mention_6 {
   color: #343a40;

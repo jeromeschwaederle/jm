@@ -67,6 +67,7 @@
 
   display: flex;
   align-items: center;
+  /* gap: 0.8rem; */
 }
 
 .listItem__saved,
@@ -78,6 +79,7 @@
 .listItem__proposition,
 .input__new {
   background-color: #e6f2ef;
+  /* margin-right: 0.8rem; */
 }
 
 .listItem__proposition {
@@ -91,7 +93,6 @@
   display: block;
 
   border: none;
-  /* text-transform: uppercase; */
   font-weight: 700;
 
   flex-grow: 1;
@@ -101,7 +102,6 @@
 .input__new::placeholder {
   color: rgba(1, 13, 9, 0.2);
   font-size: 1.8rem;
-  /* line-height: ; */
 }
 
 .input {

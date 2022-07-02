@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.1rem;
+
+  /* margin: 1.2rem 0; */
+
+  height: 4.8rem;
+  border: 0.3rem solid #010d09;
+  background-color: rgba(1, 13, 9, 0.5);
+
+  position: relative;
+}
+
+.median {
+  position: absolute;
+  height: 140%;
+  width: 0.2rem;
+  background-color: #010d09;
+  bottom: -20%;
+  left: auto;
+  right: auto;
+}
+
+.singleVote {
+  flex-grow: 1;
+}
+
+.mention_0 {
+  background-color: #099268;
+}
+.mention_1 {
+  background-color: #2f9e44;
+}
+.mention_2 {
+  background-color: #74b816;
+}
+.mention_3 {
+  background-color: #fab005;
+}
+.mention_4 {
+  background-color: #f76707;
+}
+.mention_5 {
+  background-color: #c92a2a;
+}
+.mention_6 {
+  background-color: #343a40;
+}
+
+/*
+#a61e4d
+#862e9c
+#5f3dc4
+#364fc7 
+#1864ab 
+#0b7285 
+#087f5b très bien
+#2b8a3e bien
+#5c940d plutôt bien
+#e67700 plutôt mauvais
+#d9480f mauvais
+#c92a2a très mauvais
+#343a40 à rejeter 
+*/

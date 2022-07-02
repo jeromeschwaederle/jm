@@ -1,22 +1,69 @@
 import { useSelector } from "react-redux";
-
+// import { useEffect } from "react";
+import ProfileDisplay from "./ProfileDisplay/ProfileDisplay";
 import styles from "./ResultsPresentation.module.css";
 
 export default function ResultsPresentation() {
-  const mentions = useSelector(state => state.vote.mentions);
   const propositions = useSelector(state => state.vote.propositions);
-  const ballotBoxSorted = useSelector(state => state.vote.ballotBoxSorted);
-  const ranking = useSelector(state => state.vote.results);
-  console.log("ranking:", ranking);
+  console.log("propositions:", propositions);
+  const results = useSelector(state => state.vote.results);
+  console.log("results:", results);
+
+  // useEffect(() => {
+  //   console.log(results);
+  // }, [results]);
+
+  //  TO DO  LISTER CORRECTEMENT LES RÉSULTATS EX-AEQUO !
+
+  const resultsList = Object.keys(results.ranking).map((key, i) => {
+    if (results.ranking[key].includes(" - ")) {
+      const exAequoProfilesIndexes = results.ranking[key].split(" - ");
+      const exAequoListItemToDisplay = exAequoProfilesIndexes.map(
+        (profileIndex, i) => {
+          const proposition = propositions[profileIndex];
+          const mention = results.mentions[profileIndex];
+          const profile = results.profiles[profileIndex];
+          return (
+            <li key={i * 100} className={styles.listItem}>
+              <div className={styles.header}>
+                <div className={styles.infos}>
+                  <p className={styles.classementNumber}>{key}</p>
+                  <p className={styles.proposition}>
+                    <span className={styles.ex_aequo}>(ex aequo)</span>
+                    {proposition}
+                  </p>
+                </div>
+                <div className={styles.mention}>{mention}</div>
+              </div>
+              <ProfileDisplay profile={profile} />
+            </li>
+          );
+        }
+      );
+      return exAequoListItemToDisplay;
+    } else {
+      const proposition = propositions[results.ranking[key]];
+      const mention = results.mentions[results.ranking[key]];
+      const profile = results.profiles[results.ranking[key]];
+      return (
+        <li key={i} className={styles.listItem}>
+          <div className={styles.header}>
+            <div className={styles.infos}>
+              <p className={styles.classementNumber}>{key}</p>
+              <p className={styles.proposition}>{proposition}</p>
+            </div>
+            <div className={styles.mention}>{mention}</div>
+          </div>
+          <ProfileDisplay profile={profile} />
+        </li>
+      );
+    }
+  });
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.pageTitle}>Résultats</h2>
-      <ul>
-        {ballotBoxSorted.map((profile, index) => (
-          <li key={index}>{profile}</li>
-        ))}
-      </ul>
+      <h2 className={styles.pageTitle}>Classement</h2>
+      <ul className={styles.list}>{resultsList}</ul>
     </div>
   );
 }

@@ -109,3 +109,28 @@ export function computeResults(profiles) {
 
   return ranking;
 }
+
+export function computeMention(profiles, mentions) {
+  const numberOfVote = profiles[0].length;
+  const numberOfVoteIsEven = numberOfVote % 2 === 0;
+  let mentionsArray;
+  if (numberOfVoteIsEven) {
+    let cursor_A = numberOfVote / 2 - 1;
+    let cursor_B = numberOfVote / 2;
+    mentionsArray = profiles.map(profile => {
+      if (mentions[profile[cursor_A]] === mentions[profile[cursor_B]]) {
+        return `${mentions[profile[cursor_A]]}`;
+      } else {
+        return `${mentions[profile[cursor_A]]} --- ${
+          mentions[profile[cursor_B]]
+        }`;
+      }
+    });
+  } else {
+    let cursor = Math.floor(numberOfVote / 2);
+    mentionsArray = profiles.map(profile => {
+      return `${mentions[profile[cursor]]}`;
+    });
+  }
+  return mentionsArray;
+}
