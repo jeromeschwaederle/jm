@@ -82,6 +82,9 @@ export const TEXT = {
         errorBtnText: "OK",
       },
     },
+    finalResults: {
+      title: "résultats",
+    },
   },
   overlay: {
     textLooseData:

@@ -9,6 +9,8 @@ import Button from "../../../UI/Button/Button";
 import { voteActions } from "../../../store/voteSlice";
 import { TEXT } from "../../../UI/textConstants";
 
+const toTheTop = () => window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
 export default function Propositions() {
   // ########################################
   // Title
@@ -86,7 +88,10 @@ export default function Propositions() {
 
   const dispatch = useDispatch();
   const submitHandler = () => {
-    if (!formIsChecked) setFormIsChecked(true);
+    if (!formIsChecked) {
+      setFormIsChecked(true);
+      toTheTop();
+    }
     if (formIsChecked)
       dispatch(
         voteActions.saveVoteSubject({ title: title, propositions: list })
@@ -109,7 +114,7 @@ export default function Propositions() {
         <h2 className={styles.sectionTitle_title}>
           {TEXT.configurationUrne.propositions.input_1.label}
         </h2>
-        <ul>
+        <ul className={styles.ul}>
           <li className={titleStyles}>
             <input
               ref={titleRef}
