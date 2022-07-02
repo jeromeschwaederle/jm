@@ -8,8 +8,8 @@ export const TEXT = {
   },
   commentCaMarche: [
     {
-      title: "Créer un scrutin",
-      text: "Pour créer un scrutin sur ce mobile ou cette tablette, entez un titre ainsi que les différentes propositions sur lesquelles vous souhaitez que les personnes présentes donnent leur avis.",
+      title: "Créez un scrutin",
+      text: "Pour créer un scrutin sur ce mobile ou cette tablette, entrez un titre ainsi que les différentes propositions sur lesquelles vous souhaitez que les personnes présentes donnent leur avis.",
     },
     {
       title: "Votez sereinement",
@@ -17,7 +17,7 @@ export const TEXT = {
     },
     {
       title: "Faites tourner",
-      text: "Faites passer ce mobile ou cette tablette de mains en mains afin que chacun puisse s'exprimer. Chaque persone peu contrôler son vote avant de le valider.",
+      text: "Faites passer ce mobile ou cette tablette de mains en mains afin que chacun puisse s'exprimer. Chaque personne peut contrôler son vote avant de le valider.",
     },
 
     {
