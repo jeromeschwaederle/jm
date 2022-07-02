@@ -55,7 +55,7 @@ export const TEXT = {
   Ballot: {
     Bulletin: {
       statement_part_1: "Ayant pris tous les éléments en compte concernant ",
-      statement_part_2: ", je juge en conscience que ces propositions sont :",
+      statement_part_2: ", je juge en conscience que ces propositions sont",
       btn_delete: "Supprimer ce bulletin",
       btn_confirm: "Mettre dans l'urne",
       btn_modify: "Modifier",
