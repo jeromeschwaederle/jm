@@ -1,7 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  /* padding-top: 3.6rem; */
 }
 .aside {
   position: absolute;
@@ -30,7 +29,6 @@
   text-transform: uppercase;
   text-align: center;
   padding: 4.8rem 0;
-  /* letter-spacing: -0.3rem; */
 }
 .text {
   font-size: 2.4rem;

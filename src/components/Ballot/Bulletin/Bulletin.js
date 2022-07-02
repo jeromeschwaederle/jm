@@ -15,10 +15,8 @@ export default function Bulletin({
   setOneBallotHasBeenCasted,
 }) {
   const propositions = useSelector(state => state.vote.propositions);
-
   const ballotPurpose = useSelector(state => state.vote.title);
   const standardBallot = useSelector(state => state.vote.standardBallot);
-  // console.log("standardBallot:", standardBallot);
 
   const [ballot, setBallot] = useState(standardBallot);
   const [validated, setValidated] = useState(false);

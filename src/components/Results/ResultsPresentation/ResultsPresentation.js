@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-// import { useEffect } from "react";
 import ProfileDisplay from "./ProfileDisplay/ProfileDisplay";
 import styles from "./ResultsPresentation.module.css";
 
@@ -8,12 +7,6 @@ export default function ResultsPresentation() {
   console.log("propositions:", propositions);
   const results = useSelector(state => state.vote.results);
   console.log("results:", results);
-
-  // useEffect(() => {
-  //   console.log(results);
-  // }, [results]);
-
-  //  TO DO  LISTER CORRECTEMENT LES RÉSULTATS EX-AEQUO !
 
   const resultsList = Object.keys(results.ranking).map((key, i) => {
     if (results.ranking[key].includes(" - ")) {

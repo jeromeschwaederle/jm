@@ -26,13 +26,10 @@
   background-color: rgba(0, 0, 0, 0.5);
   align-items: center;
   font-size: 2rem;
-  /* font-family: sans-serif; */
 }
 .listItems {
-  /* font-family: sans-serif; */
   text-transform: uppercase;
   font-weight: 900;
-  /* text-shadow: 0 0 3rem #010d09; */
   width: 100%;
   text-align: center;
   padding: 0.4rem 0;

@@ -1,5 +1,4 @@
 .container {
-  /* color: red; */
   font-size: 2rem;
 }
 
@@ -17,9 +16,7 @@
 }
 
 .listItem {
-  /* padding-bottom: 4rem; */
   line-height: 1;
-  /* border: 0.1rem solid #010d09; */
 }
 
 .header {
@@ -35,7 +32,6 @@
 }
 
 .classementNumber {
-  /* height: 4.8rem; */
   min-width: 4.8rem;
   display: flex;
   justify-content: center;

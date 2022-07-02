@@ -1,7 +1,6 @@
 .container {
   display: flex;
   flex-direction: column;
-  /* gap: 3.2rem; */
 }
 
 .pageTitle {
@@ -35,10 +34,7 @@
 }
 
 .section {
-  /* font-size: 1rem; */
   margin-bottom: 1.6rem;
-  /* display: flex;
-  flex-direction: column; */
 }
 
 .section h2 {
@@ -67,7 +63,6 @@
 
   display: flex;
   align-items: center;
-  /* gap: 0.8rem; */
 }
 
 .listItem__saved,
@@ -79,7 +74,6 @@
 .listItem__proposition,
 .input__new {
   background-color: #e6f2ef;
-  /* margin-right: 0.8rem; */
 }
 
 .listItem__proposition {
@@ -159,7 +153,6 @@
 .btnSubmit {
   display: block;
   width: 100%;
-  /* padding: 0; */
 }
 
 .btnSubmit:disabled {
