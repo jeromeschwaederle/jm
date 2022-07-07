@@ -32,3 +32,15 @@
   color: #010d09;
   font-weight: 600;
 }
+
+/* ####################### */
+/* MEDIA QUERIES */
+/* ####################### */
+
+/* 688px */
+@media (min-width: 43em) {
+  .container {
+    justify-content: flex-start;
+    gap: 12.8rem;
+  }
+}

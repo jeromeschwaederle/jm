@@ -44,3 +44,11 @@ body {
   background-color: #e6f2ef;
   padding: 1.2rem;
 }
+
+/* 688px */
+@media (min-width: 43em) {
+  .wrapper {
+    max-width: 68.8rem;
+    margin: auto;
+  }
+}

@@ -15,10 +15,10 @@ export default function Results() {
   const showResultsPresentation = demandAccesResults && accessResultsGranted;
 
   return (
-    <Fragment>
+    <div>
       <RebootModal />
       {showPasswordCheck && <PasswordCheck />}
       {showResultsPresentation && <ResultsPresentation />}
-    </Fragment>
+    </div>
   );
 }

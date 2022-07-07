@@ -23,3 +23,15 @@
 .btn {
   width: 80%;
 }
+
+/* ####################### */
+/* MEDIA QUERIES */
+/* ####################### */
+
+/* 688px */
+@media (min-width: 43em) {
+  .container {
+    max-width: 68.8rem;
+    margin: auto;
+  }
+}

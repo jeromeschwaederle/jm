@@ -1,17 +1,18 @@
 .container {
   font-size: 2rem;
+  padding-top: 4.8rem;
 }
 
 .pageTitle {
   text-align: center;
   text-transform: uppercase;
-  margin: 4.8rem 0;
+  margin-bottom: 4.8rem;
 }
 
 .ballotTitle {
-  margin-bottom: 3.6rem;
   text-align: center;
   text-transform: uppercase;
+  margin-bottom: 3.6rem;
 }
 
 .list {

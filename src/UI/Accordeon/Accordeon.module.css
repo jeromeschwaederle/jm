@@ -63,3 +63,15 @@
 .open .icon__down {
   display: none;
 }
+
+/* ####################### */
+/* MEDIA QUERIES */
+/* ####################### */
+
+/* 688px */
+@media (min-width: 43em) {
+  .container {
+    max-width: 68.8rem;
+    margin: auto;
+  }
+}
