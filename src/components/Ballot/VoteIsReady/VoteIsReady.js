@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 import { voteActions } from "../../../store/voteSlice";
 import styles from "./VoteIsReady.module.css";
@@ -7,6 +8,10 @@ import { TEXT } from "../../../UI/textConstants";
 import Button from "../../../UI/Button/Button";
 
 export default function VoteIsReady({ setLaunchBallot }) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   const dispatch = useDispatch();
   const ballotBox = useSelector(state => state.vote.ballotBox);
   const atLeastOneVoteHappened = ballotBox.length > 0;
