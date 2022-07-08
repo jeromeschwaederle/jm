@@ -124,7 +124,6 @@ export default function Propositions() {
                 TEXT.configurationUrne.propositions.input_1.placeholder
               }
               onChange={newTitleHandler}
-              onBlur={blurTitleHandler}
               value={title}
               autoFocus={true}
             />
@@ -193,6 +192,7 @@ export default function Propositions() {
                   TEXT.configurationUrne.propositions.input_2.placeholder
                 }
                 onChange={newPropositionHandler}
+                onFocus={blurTitleHandler}
                 value={newProposition}
               />
               <Button
