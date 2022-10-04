@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Jugement majoritaire
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## A mobile ballot box
 
-In the project directory, you can run:
+### Core functionalities
 
-### `npm start`
+- Implements the majority judgment voting system
+- Results are secured by a password
+- Mobile first design
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Technologies used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- Redux / Redux Toolkit
+- CSS Modules
+- Netlify
+- Git
 
-### `npm test`
+### [Live Demo](https://jugement-majoritaire.netlify.app/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Why build this project
 
-### `npm run build`
+### A way to give majority judgment publicity
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Not so many people know about the [majority judgment voting system](https://en.wikipedia.org/wiki/Majority_judgment).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Building a tool using it was for me a way of understanding it. And moreover a way to let other people try and experiment with it
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### A deep interest in the underlying subject
 
-### `npm run eject`
+The question of voting systems and how decision and consensus can be reached in a group of heterogeneous individuals is something that I find fascinating.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+So much so that my final project for cs50 was a [python implementation](https://www.youtube.com/watch?v=jCPWqXPRzuU) of the majority judgment voting system with a terminal interface.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Wanting to use it on my phone
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+A terminal interface is definitely not ideal in terms of user experience.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+I wanted to make a second version that I could use on my phone. And that anyone could use or test on their phone, tablet or computer whether it is a mac, pc and android platform.
 
-## Learn More
+### A worthy algoritmic challenge
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Getting a deep understanding of the tie-breacking rule of the majority judgment system is not trivial.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Hacking a reliable [code](https://github.com/jeromeschwaederle/jm/blob/master/src/store/algo.js) version of it is even less so, no matter the langage you use (python or JavaScript).
