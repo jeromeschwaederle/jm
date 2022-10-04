@@ -1,43 +1,43 @@
 export function sortBallotBox(ballotBox) {
-  const unsortedProfiles = Object.keys(ballotBox[0]).map(() => []);
-
-  ballotBox.forEach(bulletin => {
-    for (const [key, value] of Object.entries(bulletin)) {
-      unsortedProfiles[key].push(value);
-    }
-  });
-
-  const profilesSorted = unsortedProfiles.map(profile => {
-    const arrayToSort = [...profile];
-    return arrayToSort.sort((a, b) => a - b);
-  });
-
-  return profilesSorted;
+  return transformBallotObjectInProfilesArrays(ballotBox);
 }
 
-export function computeResults(profiles) {
-  const nbOfProfiles = profiles.length;
-  const profileLength = profiles[0].length;
+const transformBallotObjectInProfilesArrays = ballotBox => {
+  const arrayOfProfilesArrays = Object.keys(ballotBox[0]).map(() => []);
+
+  ballotBox.forEach(bulletin => {
+    for (const [candidat, mention] of Object.entries(bulletin))
+      arrayOfProfilesArrays[candidat].push(mention);
+  });
+
+  return sortAllArrayProfiles(arrayOfProfilesArrays);
+};
+
+const sortAllArrayProfiles = arrayOfArrayProfiles =>
+  arrayOfArrayProfiles.map(profile => [...profile].sort((a, b) => a - b));
+
+export function computeResults(arrayOfSortedArrayProfiles) {
+  const nbOfProfiles = arrayOfSortedArrayProfiles.length;
+  const profileLength = arrayOfSortedArrayProfiles[0].length;
   const electorNumberIsEven = profileLength % 2 === 0;
 
-  const profileDefeats = {};
-  for (let i = 0; i < nbOfProfiles; i++) {
-    profileDefeats[i] = 0;
+  const profileDefeats = returnsInitialisedDefeatsPerProfileObject(nbOfProfiles);
+
+  function returnsInitialisedDefeatsPerProfileObject(nbOfProfiles) {
+    const profileDefeats = {};
+    for (let i = 0; i < nbOfProfiles; i++) profileDefeats[i] = 0;
+    return profileDefeats;
   }
 
-  for (
-    let profileCursor_A = 0;
-    profileCursor_A < nbOfProfiles - 1;
-    profileCursor_A++
-  ) {
+  for (let profileCursor_A = 0; profileCursor_A < nbOfProfiles - 1; profileCursor_A++) {
     for (
       let profileCursor_B = profileCursor_A + 1;
       profileCursor_B < nbOfProfiles;
       profileCursor_B++
     ) {
       if (
-        profiles[profileCursor_A].join("") ===
-        profiles[profileCursor_B].join("")
+        arrayOfSortedArrayProfiles[profileCursor_A].join("") ===
+        arrayOfSortedArrayProfiles[profileCursor_B].join("")
       )
         continue;
 
@@ -51,13 +51,13 @@ export function computeResults(profiles) {
       }
 
       let mentionMedianeBasse__profilA =
-        profiles[profileCursor_A][cursorA__profile];
+        arrayOfSortedArrayProfiles[profileCursor_A][cursorA__profile];
       let mentionMedianeBasse__profilB =
-        profiles[profileCursor_B][cursorA__profile];
+        arrayOfSortedArrayProfiles[profileCursor_B][cursorA__profile];
       let mentionMedianeHaute__profilA =
-        profiles[profileCursor_A][cursorB__profile];
+        arrayOfSortedArrayProfiles[profileCursor_A][cursorB__profile];
       let mentionMedianeHaute__profilB =
-        profiles[profileCursor_B][cursorB__profile];
+        arrayOfSortedArrayProfiles[profileCursor_B][cursorB__profile];
 
       if (
         mentionMedianeBasse__profilA === mentionMedianeBasse__profilB &&
@@ -71,13 +71,13 @@ export function computeResults(profiles) {
           cursorB__profile++;
 
           mentionMedianeBasse__profilA =
-            profiles[profileCursor_A][cursorA__profile];
+            arrayOfSortedArrayProfiles[profileCursor_A][cursorA__profile];
           mentionMedianeBasse__profilB =
-            profiles[profileCursor_B][cursorA__profile];
+            arrayOfSortedArrayProfiles[profileCursor_B][cursorA__profile];
           mentionMedianeHaute__profilA =
-            profiles[profileCursor_A][cursorB__profile];
+            arrayOfSortedArrayProfiles[profileCursor_A][cursorB__profile];
           mentionMedianeHaute__profilB =
-            profiles[profileCursor_B][cursorB__profile];
+            arrayOfSortedArrayProfiles[profileCursor_B][cursorB__profile];
         }
       }
       if (
@@ -100,37 +100,29 @@ export function computeResults(profiles) {
 
   const ranking = {};
   for (const [key, value] of Object.entries(profileDefeats)) {
-    if (ranking[value + 1]) {
-      ranking[value + 1] = `${ranking[value + 1]} - ${key}`;
-    } else {
-      ranking[value + 1] = key;
-    }
+    if (ranking[value + 1]) ranking[value + 1] = `${ranking[value + 1]} - ${key}`;
+    else ranking[value + 1] = key;
   }
 
   return ranking;
 }
 
 export function computeMention(profiles, mentions) {
-  const numberOfVote = profiles[0].length;
-  const numberOfVoteIsEven = numberOfVote % 2 === 0;
+  const numberOfVotes = profiles[0].length;
+  const numberOfVoteIsEven = numberOfVotes % 2 === 0;
+
   let mentionsArray;
   if (numberOfVoteIsEven) {
-    let cursor_A = numberOfVote / 2 - 1;
-    let cursor_B = numberOfVote / 2;
+    let cursorLeft = numberOfVotes / 2 - 1;
+    let cursorRight = numberOfVotes / 2;
     mentionsArray = profiles.map(profile => {
-      if (mentions[profile[cursor_A]] === mentions[profile[cursor_B]]) {
-        return `${mentions[profile[cursor_A]]}`;
-      } else {
-        return `${mentions[profile[cursor_A]]} --- ${
-          mentions[profile[cursor_B]]
-        }`;
-      }
+      if (mentions[profile[cursorLeft]] === mentions[profile[cursorRight]])
+        return `${mentions[profile[cursorLeft]]}`;
+      else return `${mentions[profile[cursorLeft]]} --- ${mentions[profile[cursorRight]]}`;
     });
   } else {
-    let cursor = Math.floor(numberOfVote / 2);
-    mentionsArray = profiles.map(profile => {
-      return `${mentions[profile[cursor]]}`;
-    });
+    const voteInTheMiddle = Math.floor(numberOfVotes / 2);
+    mentionsArray = profiles.map(profile => `${mentions[profile[voteInTheMiddle]]}`);
   }
   return mentionsArray;
 }

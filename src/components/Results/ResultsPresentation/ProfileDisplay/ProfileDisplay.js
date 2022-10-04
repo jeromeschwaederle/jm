@@ -1,9 +1,9 @@
 import styles from "./ProfileDisplay.module.css";
 
 export default function ProfileDisplay({ profile }) {
-  const eachVote = profile.map(vote => {
+  const eachVote = profile.map((vote, i) => {
     const color = `mention_${vote}`;
-    return <div className={`${styles.singleVote} ${styles[color]}`}></div>;
+    return <div key={i} className={`${styles.singleVote} ${styles[color]}`}></div>;
   });
 
   return (
