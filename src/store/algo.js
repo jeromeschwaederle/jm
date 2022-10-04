@@ -1,8 +1,8 @@
 export function sortBallotBox(ballotBox) {
-  return transformBallotObjectInProfilesArrays(ballotBox);
+  return transformBallotObjectInProfilesArray(ballotBox);
 }
 
-const transformBallotObjectInProfilesArrays = ballotBox => {
+const transformBallotObjectInProfilesArray = ballotBox => {
   const arrayOfProfilesArrays = Object.keys(ballotBox[0]).map(() => []);
 
   ballotBox.forEach(bulletin => {
@@ -19,15 +19,7 @@ const sortAllArrayProfiles = arrayOfArrayProfiles =>
 export function computeResults(arrayOfSortedArrayProfiles) {
   const nbOfProfiles = arrayOfSortedArrayProfiles.length;
   const profileLength = arrayOfSortedArrayProfiles[0].length;
-  const electorNumberIsEven = profileLength % 2 === 0;
-
   const profileDefeats = returnsInitialisedDefeatsPerProfileObject(nbOfProfiles);
-
-  function returnsInitialisedDefeatsPerProfileObject(nbOfProfiles) {
-    const profileDefeats = {};
-    for (let i = 0; i < nbOfProfiles; i++) profileDefeats[i] = 0;
-    return profileDefeats;
-  }
 
   for (let profileCursor_A = 0; profileCursor_A < nbOfProfiles - 1; profileCursor_A++) {
     for (
@@ -35,77 +27,80 @@ export function computeResults(arrayOfSortedArrayProfiles) {
       profileCursor_B < nbOfProfiles;
       profileCursor_B++
     ) {
-      if (
-        arrayOfSortedArrayProfiles[profileCursor_A].join("") ===
-        arrayOfSortedArrayProfiles[profileCursor_B].join("")
-      )
+      if (profilesArePerfectlyEqual(arrayOfSortedArrayProfiles, profileCursor_A, profileCursor_B))
         continue;
 
-      let cursorA__profile;
-      let cursorB__profile;
-      if (electorNumberIsEven) {
-        cursorA__profile = profileLength / 2 - 1;
-        cursorB__profile = profileLength / 2;
-      } else {
-        cursorA__profile = cursorB__profile = Math.floor(profileLength / 2);
+      let [mentionCursor_A, mentionCursor_B] = asignMentionCursors(profileLength);
+
+      let mentions = asignMentions();
+      function asignMentions() {
+        return {
+          mentionLow__profilA: arrayOfSortedArrayProfiles[profileCursor_A][mentionCursor_B],
+          mentionHigh__profilA: arrayOfSortedArrayProfiles[profileCursor_A][mentionCursor_A],
+          mentionLow__profilB: arrayOfSortedArrayProfiles[profileCursor_B][mentionCursor_B],
+          mentionHigh__profilB: arrayOfSortedArrayProfiles[profileCursor_B][mentionCursor_A],
+        };
       }
 
-      let mentionMedianeBasse__profilA =
-        arrayOfSortedArrayProfiles[profileCursor_A][cursorA__profile];
-      let mentionMedianeBasse__profilB =
-        arrayOfSortedArrayProfiles[profileCursor_B][cursorA__profile];
-      let mentionMedianeHaute__profilA =
-        arrayOfSortedArrayProfiles[profileCursor_A][cursorB__profile];
-      let mentionMedianeHaute__profilB =
-        arrayOfSortedArrayProfiles[profileCursor_B][cursorB__profile];
-
-      if (
-        mentionMedianeBasse__profilA === mentionMedianeBasse__profilB &&
-        mentionMedianeHaute__profilA === mentionMedianeHaute__profilB
-      ) {
-        while (
-          mentionMedianeBasse__profilA === mentionMedianeBasse__profilB &&
-          mentionMedianeHaute__profilA === mentionMedianeHaute__profilB
-        ) {
-          cursorA__profile--;
-          cursorB__profile++;
-
-          mentionMedianeBasse__profilA =
-            arrayOfSortedArrayProfiles[profileCursor_A][cursorA__profile];
-          mentionMedianeBasse__profilB =
-            arrayOfSortedArrayProfiles[profileCursor_B][cursorA__profile];
-          mentionMedianeHaute__profilA =
-            arrayOfSortedArrayProfiles[profileCursor_A][cursorB__profile];
-          mentionMedianeHaute__profilB =
-            arrayOfSortedArrayProfiles[profileCursor_B][cursorB__profile];
-        }
+      while (mentionsAreEqual(mentions)) {
+        mentionCursor_A--;
+        mentionCursor_B++;
+        mentions = asignMentions();
       }
-      if (
-        (mentionMedianeBasse__profilA < mentionMedianeBasse__profilB &&
-          mentionMedianeHaute__profilA < mentionMedianeHaute__profilB) ||
-        (mentionMedianeBasse__profilA === mentionMedianeBasse__profilB &&
-          mentionMedianeHaute__profilA < mentionMedianeHaute__profilB) ||
-        (mentionMedianeBasse__profilA < mentionMedianeBasse__profilB &&
-          mentionMedianeHaute__profilA === mentionMedianeHaute__profilB) ||
-        (mentionMedianeBasse__profilA > mentionMedianeBasse__profilB &&
-          mentionMedianeBasse__profilA <= mentionMedianeHaute__profilA &&
-          mentionMedianeHaute__profilA < mentionMedianeHaute__profilB)
-      ) {
-        profileDefeats[profileCursor_B]++;
-      } else {
-        profileDefeats[profileCursor_A]++;
-      }
+
+      if (profileBLooses(mentions)) profileDefeats[profileCursor_B]++;
+      else profileDefeats[profileCursor_A]++;
     }
   }
 
-  const ranking = {};
-  for (const [key, value] of Object.entries(profileDefeats)) {
-    if (ranking[value + 1]) ranking[value + 1] = `${ranking[value + 1]} - ${key}`;
-    else ranking[value + 1] = key;
-  }
-
-  return ranking;
+  return makeRankingObject(profileDefeats);
 }
+
+const returnsInitialisedDefeatsPerProfileObject = nbOfProfiles => {
+  const profileDefeats = {};
+  for (let i = 0; i < nbOfProfiles; i++) profileDefeats[i] = 0;
+  return profileDefeats;
+};
+
+const profilesArePerfectlyEqual = (arrayOfSortedArrayProfiles, profileCursor_A, profileCursor_B) =>
+  arrayOfSortedArrayProfiles[profileCursor_A].join("") ===
+  arrayOfSortedArrayProfiles[profileCursor_B].join("");
+
+const asignMentionCursors = profileLength => {
+  let mentionCursor_A, mentionCursor_B;
+  if (profileLength % 2 === 0) {
+    mentionCursor_A = profileLength / 2 - 1;
+    mentionCursor_B = profileLength / 2;
+  } else mentionCursor_A = mentionCursor_B = Math.floor(profileLength / 2);
+  return [mentionCursor_A, mentionCursor_B];
+};
+
+const mentionsAreEqual = mentions =>
+  mentions.mentionLow__profilA === mentions.mentionLow__profilB &&
+  mentions.mentionHigh__profilA === mentions.mentionHigh__profilB;
+
+const profileBLooses = mentions => {
+  return (
+    (mentions.mentionLow__profilA < mentions.mentionLow__profilB &&
+      mentions.mentionHigh__profilA < mentions.mentionHigh__profilB) ||
+    (mentions.mentionLow__profilA === mentions.mentionLow__profilB &&
+      mentions.mentionHigh__profilA < mentions.mentionHigh__profilB) ||
+    (mentions.mentionLow__profilA < mentions.mentionLow__profilB &&
+      mentions.mentionHigh__profilA === mentions.mentionHigh__profilB) ||
+    (mentions.mentionLow__profilA < mentions.mentionLow__profilB &&
+      mentions.mentionLow__profilA >= mentions.mentionHigh__profilA &&
+      mentions.mentionHigh__profilA > mentions.mentionHigh__profilB)
+  );
+};
+
+const makeRankingObject = profileDefeats => {
+  const ranking = {};
+  for (const [profileIndex, numberOfDefeats] of Object.entries(profileDefeats)) {
+    if (ranking[numberOfDefeats + 1]) ranking[numberOfDefeats + 1] += ` - ${profileIndex}`;
+    else ranking[numberOfDefeats + 1] = profileIndex;
+  }
+  return ranking;
+};
 
 export function computeMention(profiles, mentions) {
   const numberOfVotes = profiles[0].length;
